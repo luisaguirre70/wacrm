@@ -103,6 +103,12 @@ async function main() {
   const iACostoLab = idx(aH, ['COSTO_LAB']);
   const iAEstado = idx(aH, ['ESTADO']);
 
+  // erp_polizas/erp_abonos no tienen upsert por llave natural (son N filas por
+  // paciente); para que el script sea re-ejecutable sin duplicar, se borra el
+  // set completo de la clinica y se reconstruye desde Sheets en cada corrida.
+  await supabase.from('erp_polizas').delete().eq('clinica_id', proacId);
+  await supabase.from('erp_abonos').delete().eq('clinica_id', proacId);
+
   const hoy = new Date();
 
   const polizasPorPaciente = new Map<string, any[]>();
