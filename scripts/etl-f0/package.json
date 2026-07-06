@@ -1,0 +1,11 @@
+{
+  "name": "etl-f0",
+  "private": true,
+  "type": "module",
+  "scripts": { "etl": "tsx run.ts" },
+  "dependencies": {
+    "googleapis": "^144.0.0",
+    "@supabase/supabase-js": "^2.107.0"
+  },
+  "devDependencies": { "tsx": "^4.19.0", "typescript": "^5.7.0" }
+}
